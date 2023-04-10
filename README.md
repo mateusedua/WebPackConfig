@@ -41,4 +41,68 @@ Necessario para não ficar buildando toda que fazer uma atualização no codigo.
 ```bash
 yarn add webpack-dev-server -D --save
 ```
+### Arquivo de configuração
 
+**Arquivo webpack.config.js**
+
+```bash
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+module.exports = {
+    mode: 'development',
+    entry: path.resolve(__dirname,'src','index.js'),
+    output:{
+        path: path.resolve(__dirname,'build'),
+        filename: 'bundle[hash].js'
+    },
+    plugins:[
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname,'public','index.html')
+        }),
+        new CleanWebpackPlugin()
+    ],
+    module:{
+        rules:[
+            {
+                test: /\.js$/,
+                use: 'babel-loader',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader','css-loader']
+            },
+            {
+                test:/\.svg$/,
+                use:'svg-url-loader'
+            }
+        ]
+    },
+    devServer:{
+        port: 3001
+    },
+}
+```
+
+### Rodar o projeto
+
+Necessário clonar o projeto e rodar o comando
+```bash
+yarn
+```
+
+Para rodar o build
+
+```bash
+yarn build
+```
+
+Para rodar em desenvolvimento
+
+```bash
+yarn dev
+```
+
+Toda essa configurações estão dentro do arquivo **package.json**
