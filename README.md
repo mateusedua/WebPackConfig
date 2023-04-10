@@ -4,6 +4,12 @@
 
 Configuração do babel com webpack feito no codigo gerado na criação de um projeto react padrão **npx create-react-app app_name**.
 
+## Links
+
+https://babeljs.io/
+
+https://webpack.js.org/
+
 ## Pacotes Utilizandos
 
 ### Babel
